@@ -21,7 +21,7 @@
                         <a class="nav-link" href="{{ route('productos.index') }}">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Vender</a>
+                        <a class="nav-link" href="{{ route('ventas.index') }}">Vender</a>
                     </li>
                 </ul>
             </div>
@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-right mb-2">
-                    <a class="btn btn-success" href="{{ route('productos.create') }}"> Crear Productos</a>
+                    <a class="btn btn-success" href="{{ route('ventas.create') }}">Vender</a>
                 </div>
             </div>
         </div>
@@ -40,38 +40,35 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
+        @if ($errors->any())
+            <div class="alert alert-danger mb-1 mt-1">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Referencia</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col" width="280px">Edicion</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio Historico</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Total</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($productos as $producto)
+                @foreach ($ventas as $venta)
                     <tr>
-                        <td scope="row">{{ $producto->id }}</td>
-                        <td>{{ $producto->nombre }}</td>
-                        <td>{{ $producto->referencia }}</td>
-                        <td>{{ $producto->categoria->nombre }}</td>
-                        <td>{{ $producto->peso }}g</td>
-                        <td>{{ $producto->stock }}</td>
-                        <td>{{ $producto->precio }}$</td>
-                        <td>
-                            <form action="{{ route('productos.destroy', $producto->id) }}" method="Post">
-                                <a class="btn btn-primary"
-                                    href="{{ route('productos.edit', $producto->id) }}">Editar</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </td>
+                        <td scope="row">{{ $venta->id }}</td>
+                        <td>{{ $venta->producto->nombre }}</td>
+                        <td>{{ $venta->precioHist}}$</td>
+                        <td>{{ $venta->cantidad }}</td>
+                        <td>{{ $venta->total }}$</td>
+                        <td>{{ $venta->timestampVenta}}</td>
                     </tr>
                 @endforeach
             </tbody>

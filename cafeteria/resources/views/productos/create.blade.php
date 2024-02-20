@@ -12,6 +12,24 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand">Cafeteria Konecta</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('categorias.index') }}">Categorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('productos.index') }}">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('ventas.index') }}">Vender</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container mt-2">
         <div class="row">
             <div class="col-lg-12 margin-tb">
@@ -42,7 +60,7 @@
                     <div class="form-group mb-3">
                         <strong>Referencia:</strong>
                         <input type="text" name="referencia" class="form-control" placeholder="Referencia">
-                        @error('nombre')
+                        @error('referencia')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
@@ -51,21 +69,29 @@
                         <input type="number" class="form-control" name="precio" placeholder="Precio">
                         <span class="input-group-text">.00</span>
                     </div>
+                    @error('precio')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                    @enderror
                     <div class="input-group mb-3">
                         <span class="input-group-text">Stock</span>
                         <input type="number" class="form-control" name="stock" placeholder="Stock">
                     </div>
+                    @error('stock')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     <div class="input-group mb-3">
                         <span class="input-group-text">Peso</span>
                         <input type="number" class="form-control" name="peso" placeholder="Peso">
                         <span class="input-group-text">g</span>
                     </div>
+                    @error('peso')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     <div class="input-group mb-3">
                         <select class="form-select" aria-label="Default select example" name="idCategoria">
                             @foreach ($categorias as $categoria)
                                 <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                             @endforeach
-
                         </select>
                     </div>
                 </div>

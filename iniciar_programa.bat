@@ -1,3 +1,5 @@
 docker-compose up -d
 
-php app/artisan serve
+php cafeteria/artisan migrate
+
+php cafeteria/artisan serve

@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:16.0
+    #volumes:
+    #- ./pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: cafeteria
+      POSTGRES_USER: user_cafeteria
+      POSTGRES_PASSWORD: pass_cafeteria
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      # Default email for pgAdmin 4
+      PGADMIN_DEFAULT_EMAIL: admin@email.com
+      # Password for accessing pgAdmin 4
+      PGADMIN_DEFAULT_PASSWORD: adminpassword
+    ports:
+      # Expose pgadmin on 5050 
+      - "5050:80"
+      #volumes:
+      #- ./pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    restart: always
+  volumes:
+    pgadmin_data:

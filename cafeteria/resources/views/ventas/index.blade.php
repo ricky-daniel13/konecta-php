@@ -53,11 +53,11 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Fecha</th>
                     <th scope="col">Producto</th>
                     <th scope="col">Precio Historico</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Total</th>
+                    <th scope="col">Fecha</th>
                 </tr>
             </thead>
             <tbody>

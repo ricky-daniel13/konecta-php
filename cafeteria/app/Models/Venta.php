@@ -12,7 +12,7 @@ class Venta extends Model
     protected $fillable = ['cantidad', 'idProducto', 'precioHist'];
     public function producto(): BelongsTo
     {
-        return $this->BelongsTo(Categoria::class, 'idProducto');
+        return $this->BelongsTo(Producto::class, 'idProducto');
     }
     public $timestamps = false;
 

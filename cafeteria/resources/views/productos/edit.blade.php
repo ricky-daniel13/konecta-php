@@ -70,25 +70,37 @@
                         <input type="number" class="form-control" name="precio" placeholder="Precio" value="{{ $producto->precio }}">
                         <span class="input-group-text">.00</span>
                     </div>
+                    @error('precio')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     <div class="input-group mb-3">
                         <span class="input-group-text">Stock</span>
                         <input type="number" class="form-control" name="stock" placeholder="Stock" value="{{ $producto->stock }}">
                     </div>
+                    @error('stock')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     <div class="input-group mb-3">
                         <span class="input-group-text">Peso</span>
                         <input type="number" class="form-control" name="peso" placeholder="Peso" value="{{ $producto->peso }}">
                         <span class="input-group-text">g</span>
                     </div>
+                    @error('peso')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                     <div class="input-group mb-3">
-                        <select class="form-select" aria-label="Default select example" name="idCategoria">
+                        <select class="form-select" aria-label="Categoria" name="idCategoria">
                             @foreach ($categorias as $categoria)
                                 <option @if ($categoria->id == $producto->idCategoria) selected @endif value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                             @endforeach
 
                         </select>
                     </div>
+                    @error('idCategoria')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
                 </div>
-                <button type="submit" class="btn btn-primary ml-3">Crear</button>
+                <button type="submit" class="btn btn-primary ml-3">Editar</button>
             </div>
         </form>
     </div>
